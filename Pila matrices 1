@@ -1,0 +1,109 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            // Mostrar el menú de opciones
+            System.out.println("----- Menú de Opciones -----");
+            System.out.println("1. FIGURA 1: Matriz con borde de 1");
+            System.out.println("2. FIGURA 2: Matriz triangular inferior");
+            System.out.println("3. FIGURA 3: Figura de diamante");
+            System.out.println("4. SALIR");
+            System.out.print("Selecciona una opción: ");
+            int opcion = scanner.nextInt();
+            scanner.nextLine();  // Consumir el salto de línea
+
+            switch (opcion) {
+                case 1:
+                    // Opción 1: Matriz con borde de 1
+                    System.out.print("¿De qué tamaño quieres el arreglo? ");
+                    int cantidad1 = scanner.nextInt();
+                    imprimirMatrizBorde(cantidad1);
+                    break;
+
+                case 2:
+                    // Opción 2: Matriz triangular inferior
+                    System.out.print("¿De qué tamaño quieres el arreglo? ");
+                    int cantidad2 = scanner.nextInt();
+                    imprimirMatrizTriangularInferior(cantidad2);
+                    break;
+
+                case 3:
+                    // Opción 3: Figura de diamante
+                    System.out.print("Introduce un tamaño impar para la matriz: ");
+                    int cantidad3 = scanner.nextInt();
+                    if (cantidad3 % 2 == 0) {
+                        System.out.println("Por favor, introduce un número impar para mantener el patrón centrado.");
+                    } else {
+                        imprimirDiamante(cantidad3);
+                    }
+                    break;
+
+                case 4:
+                    // Opción para salir
+                    System.out.println("Saliendo del programa.");
+                    scanner.close();
+                    return;
+
+                default:
+                    System.out.println("Opción no válida. Por favor, elige una opción válida.");
+                    break;
+            }
+        }
+    }
+
+    // Método para imprimir matriz con borde de 1
+    private static void imprimirMatrizBorde(int tamaño) {
+        System.out.println("Matriz con borde de 1:");
+        for (int i = 0; i < tamaño; i++) {
+            for (int j = 0; j < tamaño; j++) {
+                if (i == 0 || j == 0 || i == tamaño - 1 || j == tamaño - 1) {
+                    System.out.print("1 ");
+                } else {
+                    System.out.print("0 ");
+                }
+            }
+            System.out.println();
+        }
+    }
+
+    // Método para imprimir matriz triangular inferior
+    private static void imprimirMatrizTriangularInferior(int tamaño) {
+        System.out.println("Matriz triangular inferior:");
+        for (int i = 0; i < tamaño; i++) {
+            for (int j = 0; j < tamaño; j++) {
+                if (j <= i) {
+                    System.out.print("1 ");
+                } else {
+                    System.out.print("0 ");
+                }
+            }
+            System.out.println();
+        }
+    }
+
+    // Método para imprimir figura de diamante
+    private static void imprimirDiamante(int tamaño) {
+        System.out.println("Figura de diamante:");
+        for (int i = 0; i < tamaño; i++) {
+            for (int j = 0; j < tamaño; j++) {
+                if (i <= tamaño / 2) {
+                    if (j >= i && j < tamaño - i) {
+                        System.out.print("* ");
+                    } else {
+                        System.out.print("  ");
+                    }
+                } else {
+                    if (j >= tamaño - i - 1 && j <= i) {
+                        System.out.print("* ");
+                    } else {
+                        System.out.print("  ");
+                    }
+                }
+            }
+            System.out.println();
+        }
+    }
+}
